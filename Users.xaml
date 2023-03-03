@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Nice_bike.Users"
+             Title="Users">
+
+
+
+
+    <AbsoluteLayout>
+        <Label  AbsoluteLayout.LayoutBounds ="600,-100,300,300"
+            Text ="Choose your part"
+            TextColor="DarkOrange"
+            FontSize="32"
+            VerticalOptions="Center" 
+            HorizontalOptions ="Center" />
+
+        <Image Source="bike.png"
+           AbsoluteLayout.LayoutBounds ="175,195,200,300"/>
+        <Button Text="Sale Representative"
+                x:Name="Btn_SR"
+                BackgroundColor="DarkOrange"
+                AbsoluteLayout.LayoutBounds ="175,195,200,50"
+                Clicked="Button_SR_Clicked" />
+        <Image Source="bike.png"
+           AbsoluteLayout.LayoutBounds ="650,195,200,300"/>
+        <Button Text="Production Manager"
+                x:Name="Btn_PM"
+                BackgroundColor="DarkOrange"
+                AbsoluteLayout.LayoutBounds ="650,195,200,50"
+                Clicked="Button_PM_Clicked" />
+        <Image Source="bike.png"
+           AbsoluteLayout.LayoutBounds ="1145,195,200,300"/>
+        <Button Text="Assembler"
+                x:Name="Btn_Assembler"
+                BackgroundColor="DarkOrange"
+                AbsoluteLayout.LayoutBounds ="1145,195,200,50"
+                Clicked="Button_Assembler_Clicked" />
+    </AbsoluteLayout>
+
+
+
+
+</ContentPage>

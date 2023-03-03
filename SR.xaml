@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Nice_bike.SR"
+             Title="Sale Representative">
+    
+    <AbsoluteLayout>
+        <Label  AbsoluteLayout.LayoutBounds ="550,-100,400,300"
+            Text ="Welcome to our catalog"
+            FontAttributes="Bold"
+            TextColor="DarkOrange"
+            FontSize="32"
+            VerticalOptions="Center" 
+            HorizontalOptions ="Center" />
+        <Label  AbsoluteLayout.LayoutBounds ="550,-50,400,300"
+            Text ="Choose your bike"
+            TextColor="DarkOrange"
+            FontSize="32"
+            VerticalOptions="Center" 
+            HorizontalOptions ="Center" />
+
+        <Image Source="bike.png"
+           AbsoluteLayout.LayoutBounds ="175,195,200,300"/>
+        <Button Text="Adventure"
+                x:Name="Btn_SR"
+                BackgroundColor="DarkOrange"
+                AbsoluteLayout.LayoutBounds ="175,195,200,50"
+                Clicked="Button_Adventure_Clicked" />
+        <Image Source="bike.png"
+           AbsoluteLayout.LayoutBounds ="650,195,200,300"/>
+        <Button Text="Explorer"
+                x:Name="Btn_PM"
+                BackgroundColor="DarkOrange"
+                AbsoluteLayout.LayoutBounds ="650,195,200,50"
+                Clicked="Button_Explorer_Clicked" />
+        <Image Source="bike.png"
+           AbsoluteLayout.LayoutBounds ="1145,195,200,300"/>
+        <Button Text="City"
+                x:Name="Btn_Assembler"
+                BackgroundColor="DarkOrange"
+                AbsoluteLayout.LayoutBounds ="1145,195,200,50"
+                Clicked="Button_City_Clicked" />
+
+        <ImageButton Source="panier.jpg"
+           Clicked="Button_Pannier_Clicked"
+           AbsoluteLayout.LayoutBounds ="1350,500,200,300"/>
+    </AbsoluteLayout>
+</ContentPage>
