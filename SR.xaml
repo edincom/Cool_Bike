@@ -42,7 +42,7 @@
                 Clicked="Button_City_Clicked" />
 
         <ImageButton Source="panier.jpg"
-           Clicked="Button_Pannier_Clicked"
+           Clicked="Button_Panier_Clicked"
            AbsoluteLayout.LayoutBounds ="1350,500,200,300"/>
     </AbsoluteLayout>
 </ContentPage>

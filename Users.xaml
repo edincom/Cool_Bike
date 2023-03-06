@@ -6,7 +6,7 @@
 
 
 
-
+        
     <AbsoluteLayout>
         <Label  AbsoluteLayout.LayoutBounds ="600,-100,300,300"
             Text ="Choose your part"
@@ -37,8 +37,6 @@
                 AbsoluteLayout.LayoutBounds ="1145,195,200,50"
                 Clicked="Button_Assembler_Clicked" />
     </AbsoluteLayout>
-
-
-
+        
 
 </ContentPage>
