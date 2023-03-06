@@ -24,10 +24,10 @@ public partial class SR : ContentPage
         Navigation.PushAsync(new City());
 
     }
-    private void Button_Pannier_Clicked(object sender, EventArgs e)
+    private void Button_Panier_Clicked(object sender, EventArgs e)
     {
 
-        Navigation.PushAsync(new Pannier());
+        Navigation.PushAsync(new Panier());
 
     }
     

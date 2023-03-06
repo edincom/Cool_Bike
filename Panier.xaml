@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Nice_bike.Panier"
+             Title="Panier">
+    <StackLayout>
+        
+        <Label Text="List of Bikes" FontAttributes="Bold" FontSize="Large" Margin="10,10,10,0" />
+        <ListView x:Name="bikeList"
+                  HasUnevenRows="true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Model}"
+                                   FontSize="Medium"
+                                   HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Size}"
+                                   FontSize="Medium"
+                                   HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Color}"
+                                   FontSize="Medium"
+                                   HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Price, StringFormat='${0:N2}'}"
+                                   FontSize="Medium"
+                                   HorizontalOptions="End"/>
+                            <Button Text="Add to cart"
+                                    Clicked="AddToCart_Clicked"
+                                    BindingContext="{Binding .}"
+                                    Margin="10,0,0,0"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label x:Name="cartTotal"
+               Text="Total: €0.00"
+               FontSize="Large"
+               HorizontalOptions="End"
+               Margin="0,10,10,0"/>
+
+        <ListView x:Name="cartList"
+                  Margin="0,20"
+                  SeparatorVisibility="None">
+            <ListView.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Model" Grid.Column="0" FontAttributes="Bold" />
+                    <Label Text="Size" Grid.Column="1" FontAttributes="Bold" />
+                    <Label Text="Color" Grid.Column="2" FontAttributes="Bold" />
+                    <Label Text="Price" Grid.Column="3" FontAttributes="Bold" />
+                    <Label Text="Quantity" Grid.Column="4" FontAttributes="Bold" />
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Model}" Grid.Column="0" />
+                            <Label Text="{Binding Size}" Grid.Column="1" />
+                            <Label Text="{Binding Color}" Grid.Column="2" />
+                            <Label Text="{Binding Price, StringFormat='€{0:N2}'}" Grid.Column="3" />
+                            <StackLayout Grid.Column="4" Orientation="Horizontal">
+                                <Button Text="-" Clicked="RemoveItem_Clicked" BindingContext="{Binding .}" />
+                                <Label Text="{Binding Quantity}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Large" Margin="10,0" />
+                                <Button Text="+" Clicked="AddItem_Clicked" BindingContext="{Binding .}" />
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label Text="{Binding Total, StringFormat='€{0:N2}'}" FontSize="Medium" Margin="10" />
+
+        <Button Text="Finalize the order" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="10" Clicked="Checkout_Clicked" />
+        
+    </StackLayout>
+</ContentPage>
