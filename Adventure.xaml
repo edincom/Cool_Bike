@@ -6,12 +6,12 @@
     
     <HorizontalStackLayout>
         <Image
-            Source="adventurer.jpg"
-            HeightRequest="450"
+            Source="adventure_orange.png"
+            HeightRequest="350"
             Margin="100, 0, 0, 0"
             HorizontalOptions="Center" />
 
-        <VerticalStackLayout Padding="300, 50, 100, 100">
+        <VerticalStackLayout Padding="100, 50, 100, 100">
             <Label
                 Text="Select your options"
                 FontAttributes="Bold"
@@ -46,9 +46,9 @@
                 <Picker x:Name="Color" Margin="25, 60, 0, 0" Grid.Column="1" WidthRequest="250">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
-                            <x:String>Red</x:String>
-                            <x:String>Blue</x:String>
-                            <x:String>Green</x:String>
+                            <x:String>Orange</x:String>
+                            <x:String>Yellow</x:String>
+                            <x:String>Purple</x:String>
                             <x:String>Black</x:String>
                             <x:String>White</x:String>
                         </x:Array>
@@ -72,3 +72,5 @@
     </HorizontalStackLayout>
 
 </ContentPage>
+
+
