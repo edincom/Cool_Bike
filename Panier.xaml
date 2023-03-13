@@ -5,6 +5,7 @@
              Title="Panier">
     <StackLayout>
 
+        <Label x:Name="MyLabel" />
         <Label Text="List of Bikes" FontAttributes="Bold" FontSize="Large" Margin="10,10,10,0" />
         <ListView x:Name="bikeList"
                   HasUnevenRows="true">

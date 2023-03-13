@@ -55,6 +55,11 @@ public partial class Panier : ContentPage
         UpdateCartTotal();
 
     }
+    public Panier(string labelText)
+    {
+        InitializeComponent();
+        MyLabel.Text = labelText;
+    }
 
     private void AddToCart_Clicked(object sender, System.EventArgs e)
     {
