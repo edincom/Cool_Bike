@@ -12,8 +12,9 @@ public partial class MainPage : ContentPage
 	
     private void Button_Open_Clicked(object sender, EventArgs e)
     {
-        
-		Navigation.PushAsync(new Users());
+
+        Navigation.PushAsync(new Users());
+       
 
     }
 }
