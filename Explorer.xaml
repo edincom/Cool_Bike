@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Nice_bike.Explorer"
-             Title="Explorer">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="Nice_bike.Explorer"
+            Title="Explorer">
 
-    <HorizontalStackLayout>
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition />
+            <RowDefinition Height="1" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Image
-            Source="explorer_orange.png"
-            HeightRequest="350"
-            Margin="100, 0, 0, 0"
-            HorizontalOptions="Center" />
+                Source="explorer_orange.png"
+                HeightRequest="350" />
 
-        <VerticalStackLayout Padding="100, 50, 100, 100">
+        <VerticalStackLayout Grid.Column="1">
             <Label
-                Text="Select your options"
-                FontAttributes="Bold"
-                TextColor="DarkOrange"
-                FontSize="45"
-                HorizontalOptions="CenterAndExpand" />
-
+                        Text="Select your options"
+                        FontAttributes="Bold"
+                        TextColor="DarkOrange"
+                        FontSize="45"
+                        HorizontalOptions="CenterAndExpand" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -29,8 +38,8 @@
                 <Picker x:Name="Size" Margin="25, 100, 0, 0" Grid.Column="1" WidthRequest="250">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
-                            <x:String>Small</x:String>
-                            <x:String>Large</x:String>
+                            <x:String>26</x:String>
+                            <x:String>28</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
@@ -55,7 +64,6 @@
                     </Picker.ItemsSource>
                 </Picker>
             </Grid>
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -63,14 +71,15 @@
                 </Grid.RowDefinitions>
 
                 <Label Text="Select your quantity:" Margin="50, 60, 0, 0" />
-
-                <Entry x:Name="QuantityEntry" Grid.Row="2" Margin="50, 30, 0, 0" Keyboard="Numeric"/>
+                <Entry x:Name="QuantityEntry" Grid.Row="2" Margin="50, 30, 50, 0" Keyboard="Numeric"/>
             </Grid>
+
+
 
         </VerticalStackLayout>
 
-    </HorizontalStackLayout>
+
+
+    </Grid>
 
 </ContentPage>
-
-
