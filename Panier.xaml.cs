@@ -1,5 +1,6 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
+using MySql.Data.MySqlClient;
 
 namespace Nice_bike;
 
@@ -64,10 +65,10 @@ public partial class Panier : ContentPage
         // Ajouter l'article au panier
         cartItems.Add(bike);
 
-        // Mettre ‡ jour le total du panier
+        // Mettre √† jour le total du panier
         UpdateCartTotal();
 
-        // Mettre ‡ jour la liste des articles dans le panier
+        // Mettre √† jour la liste des articles dans le panier
         cartList.ItemsSource = null;
         cartList.ItemsSource = cartItems;
     }
@@ -102,11 +103,11 @@ public partial class Panier : ContentPage
     private void UpdateTotal()
     {
         var total = cartItems.Sum(item => item.Price * item.Quantity);
-        cartTotal.Text = $"Total: Ä{total:N2}";
+        cartTotal.Text = $"Total: ‚Ç¨{total:N2}";
 
-        cartItems.RemoveAll(item => item.Quantity == 0); // Supprime les ÈlÈments dont la quantitÈ est zÈro
+        cartItems.RemoveAll(item => item.Quantity == 0); // Supprime les √©l√©ments dont la quantit√© est z√©ro
         cartList.ItemsSource = null;
-        cartList.ItemsSource = cartItems; // Met ‡ jour la liste des articles dans le panier
+        cartList.ItemsSource = cartItems; // Met √† jour la liste des articles dans le panier
     }
 
     private void UpdateCartTotal()
@@ -134,50 +135,78 @@ public partial class Panier : ContentPage
 
         if (answer)
         {
-            // Envoyer la commande ‡ un service de commande
+            // Envoyer la commande √† un service de commande
             // ...
-            /*  using MySql.Data.MySqlClient;
+            SendCartToDatabase(cartItems);
+    {
+                string connectionString = "server=localhost;database=;uid=;password=;";
 
-              ...
+                try
+                {
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
 
-              private void SendCartToDatabase(List<Bike> cartItems)
-              {
-              string connectionString = "server=localhost;database=mydatabase;uid=myusername;password=mypassword;";
+                        foreach (Bike item in cartItems)
+                        {
+                            string query = "INSERT INTO commande (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
+                            MySqlCommand command = new MySqlCommand(query, connection);
+                            command.Parameters.AddWithValue("@model", item.Model);
+                            command.Parameters.AddWithValue("@size", item.Size);
+                            command.Parameters.AddWithValue("@color", item.Color);
+                            command.Parameters.AddWithValue("@price", item.Price);
+                            command.Parameters.AddWithValue("@quantity", item.Quantity);
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
-              try
-              {
-                  using (MySqlConnection connection = new MySqlConnection(connectionString))
-                  {
-                      connection.Open();
 
-                      foreach (Bike item in cartItems)
-                      {
-                          string query = "INSERT INTO cart_items (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
-                          MySqlCommand command = new MySqlCommand(query, connection);
-                          command.Parameters.AddWithValue("@model", item.Model);
-                          command.Parameters.AddWithValue("@size", item.Size);
-                          command.Parameters.AddWithValue("@color", item.Color);
-                          command.Parameters.AddWithValue("@price", item.Price);
-                          command.Parameters.AddWithValue("@quantity", item.Quantity);
-                          command.ExecuteNonQuery();
-                      }
-                  }
-              }
-              catch (Exception ex)
-              {
-                  Console.WriteLine(ex.Message);
-              }
-          }*/
+
+
 
             // Vider le panier
             ClearCart();
 
             // Afficher un message de confirmation
-            await DisplayAlert("SuccËs", "Votre commande a ÈtÈ passÈe avec succËs !", "OK");
+            await DisplayAlert("Succ√®s", "Votre commande a √©t√© pass√©e avec succ√®s !", "OK");
 
 
             // Naviguer vers la page d'accueil
             await Navigation.PopToRootAsync();
+        }
+    }
+    private void SendCartToDatabase(List<Bike> cartItems)
+    {
+        string connectionString = "server=localhost;database=nice_bike;uid=root;password=12345678;";
+
+        try
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                foreach (Bike item in cartItems)
+                {
+                    string query = "INSERT INTO commande (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@model", item.Model);
+                    command.Parameters.AddWithValue("@size", item.Size);
+                    command.Parameters.AddWithValue("@color", item.Color);
+                    command.Parameters.AddWithValue("@price", item.Price);
+                    command.Parameters.AddWithValue("@quantity", item.Quantity);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
         }
     }
 
