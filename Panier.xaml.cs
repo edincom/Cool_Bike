@@ -2,7 +2,6 @@ using System.Collections.ObjectModel;
 
 
 namespace Nice_bike;
-
 /* private List<Client> _clients;
  private Client _selectedClient;
 
@@ -14,12 +13,12 @@ namespace Nice_bike;
 public class Bike
 {
     public string Model { get; set; }
-    public int Size { get; set; }
+    public string Size { get; set; }
     public string Color { get; set; }
     public double Price { get; set; }
     public int Quantity { get; set; } = 1;
 
-    public Bike(string model, int size, string color, double price)
+    public Bike(string model, string size, string color, double price)
     {
         Model = model;
         Size = size;
@@ -30,7 +29,7 @@ public class Bike
 
 public partial class Panier : ContentPage
 {
-    private List<Bike> bikes = new List<Bike>();
+    public static List<Bike> bikes = new List<Bike>();
     private List<Bike> cartItems = new List<Bike>();
 
     private ObservableCollection<Bike> cartItemsObservableCollection = new ObservableCollection<Bike>();
@@ -39,32 +38,23 @@ public partial class Panier : ContentPage
 
     public Panier()
     {
+
         InitializeComponent();
 
 
-        // Ajouter des produits
-        bikes.Add(new Bike("City", 28, "purple", 200));
-        bikes.Add(new Bike("Adventure", 26, "Blue", 250));
-        bikes.Add(new Bike("City", 26, "red", 200));
-        bikes.Add(new Bike("Explorer", 28, "black", 300));
-
         // Afficher la liste des produits
-        bikeList.ItemsSource = bikes;
+        bikeListe.ItemsSource = bikes;
 
         // Afficher le panier vide
         UpdateCartTotal();
 
-    }
-    public Panier(string labelText)
-    {
-        InitializeComponent();
-        MyLabel.Text = labelText;
     }
 
     private void AddToCart_Clicked(object sender, System.EventArgs e)
     {
         var button = sender as Button;
         var bike = button.BindingContext as Bike;
+
 
         // Ajouter l'article au panier
         cartItems.Add(bike);
@@ -130,7 +120,7 @@ public partial class Panier : ContentPage
         cartItems.Clear();
         cartItemsObservableCollection.Clear();
     }
-
+    
 
     private async void Checkout_Clicked(object sender, EventArgs e)
     {

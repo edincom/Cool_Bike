@@ -1,8 +1,11 @@
+using Microsoft.VisualBasic;
+
 namespace Nice_bike;
 
 public partial class SR : ContentPage
 {
-	public SR()
+
+    public SR()
 	{
 		InitializeComponent();
 	}

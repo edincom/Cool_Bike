@@ -42,7 +42,8 @@
                 Clicked="Button_City_Clicked" />
 
         <ImageButton Source="panier.jpg"
-           Clicked="Button_Panier_Clicked"
-           AbsoluteLayout.LayoutBounds ="1350,500,200,300"/>
+                     Clicked="Button_Panier_Clicked"
+                     AbsoluteLayout.LayoutBounds ="1350,500,200,300"
+                     x:Name="MyLabel"/>
     </AbsoluteLayout>
 </ContentPage>
