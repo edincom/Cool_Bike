@@ -139,7 +139,7 @@ public partial class Panier : ContentPage
             // ...
             SendCartToDatabase(cartItems);
     {
-                string connectionString = "server=localhost;database=;uid=;password=;";
+                string connectionString = "server=localhost;database=database_name;uid=username;password=usr_password;";
 
                 try
                 {
