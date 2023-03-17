@@ -1,17 +1,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 
 namespace Nice_bike;
 
-/* private List<Client> _clients;
- private Client _selectedClient;
-
- public Client SelectedClient
- {
-     get { return _selectedClient; }
-     set { _selectedClient = value; }
- }*/
 public class Bike
 {
     public string Model { get; set; }
@@ -137,7 +129,7 @@ public partial class Panier : ContentPage
         {
             // Envoyer la commande à un service de commande
             // ...
-            SendCartToDatabase(cartItems);
+           /* SendCartToDatabase(cartItems);
     {
                 string connectionString = "server=localhost;database=database_name;uid=username;password=usr_password;";
 
@@ -164,7 +156,7 @@ public partial class Panier : ContentPage
                 {
                     Console.WriteLine(ex.Message);
                 }
-            }
+            }*/
 
 
 
@@ -181,33 +173,57 @@ public partial class Panier : ContentPage
             await Navigation.PopToRootAsync();
         }
     }
-    private void SendCartToDatabase(List<Bike> cartItems)
+    /* private void SendCartToDatabase(List<Bike> cartItems)
+     {
+         string connectionString = "server=localhost;database=nice_bike;uid=root;password=12345678;";
+
+         try
+         {
+             using (MySqlConnection connection = new MySqlConnection(connectionString))
+             {
+                 connection.Open();
+
+                 foreach (Bike item in cartItems)
+                 {
+                     string query = "INSERT INTO commande (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
+                     MySqlCommand command = new MySqlCommand(query, connection);
+                     command.Parameters.AddWithValue("@model", item.Model);
+                     command.Parameters.AddWithValue("@size", item.Size);
+                     command.Parameters.AddWithValue("@color", item.Color);
+                     command.Parameters.AddWithValue("@price", item.Price);
+                     command.Parameters.AddWithValue("@quantity", item.Quantity);
+                     command.ExecuteNonQuery();
+                 }
+             }
+         }
+         catch (Exception ex)
+         {
+             Console.WriteLine(ex.Message);
+         }
+     }*/
+    protected override void OnAppearing()
     {
-        string connectionString = "server=localhost;database=nice_bike;uid=root;password=12345678;";
-
-        try
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                foreach (Bike item in cartItems)
-                {
-                    string query = "INSERT INTO commande (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
-                    MySqlCommand command = new MySqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@model", item.Model);
-                    command.Parameters.AddWithValue("@size", item.Size);
-                    command.Parameters.AddWithValue("@color", item.Color);
-                    command.Parameters.AddWithValue("@price", item.Price);
-                    command.Parameters.AddWithValue("@quantity", item.Quantity);
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+        base.OnAppearing();
+        LoadClients();
     }
 
+    private void LoadClients()
+    {
+        List<Client> clients = ClientManager.GetClients();
+        ClientsPicker.ItemsSource = clients.OrderBy(c => c.Nom).ToList();
+    }
+
+    private async void EnregistrerButton_Clicked(object sender, System.EventArgs e)
+    {
+        await Navigation.PushAsync(new AddClients());
+    }
+
+    private void ClientsPicker_SelectedIndexChanged(object sender, System.EventArgs e)
+    {
+        Client selectedClient = (Client)ClientsPicker.SelectedItem;
+        if (selectedClient != null)
+        {
+            DisplayAlert("Client sélectionné", selectedClient.Nom, "OK");
+        }
+    }
 }

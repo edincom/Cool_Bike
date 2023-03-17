@@ -5,6 +5,19 @@
              Title="Cart">
     <StackLayout>
 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Picker x:Name="ClientsPicker" ItemDisplayBinding="{Binding Nom}" Grid.Row="0" Grid.Column="0" HeightRequest="50" WidthRequest="400"/>
+
+            <Button Text="Enregistrer un client" Clicked="EnregistrerButton_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="50"/>
+        </Grid>
+
         <Label Text="List of Bikes" FontAttributes="Bold" FontSize="Large" Margin="10,10,10,0" />
         <ListView x:Name="bikeList"
                   HasUnevenRows="true">
