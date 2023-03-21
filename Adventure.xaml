@@ -33,7 +33,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Text="Select your size:" Margin="50, 100, 0, 0" />
-                <Picker x:Name="Size" Margin="25, 100, 0, 0" Grid.Column="1" WidthRequest="250">
+                <Picker x:Name="Size" Margin="25, 100, 0, 0" Grid.Column="1" WidthRequest="250" SelectedIndexChanged="Picker1_SelectedIndexChanged">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>26</x:String>
@@ -50,7 +50,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Text="Select your color:" Margin="50, 60, 0, 0" />
-                <Picker x:Name="Color" Margin="25, 60, 0, 0" Grid.Column="1" WidthRequest="250">
+                <Picker x:Name="Color" Margin="25, 60, 0, 0" Grid.Column="1" WidthRequest="250" SelectedIndexChanged="Picker2_SelectedIndexChanged">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Orange</x:String>
@@ -69,10 +69,38 @@
                 </Grid.RowDefinitions>
 
                 <Label Text="Select your quantity:" Margin="50, 60, 0, 0" />
-                <Entry x:Name="QuantityEntry" Grid.Row="2" Margin="50, 30, 50, 0" Keyboard="Numeric"/>
+                <Entry x:Name="QuantityEntry" Grid.Row="2" Margin="50, 30, 50, 0" Keyboard="Numeric" Placeholder="Enter a number"/>
             </Grid>
+            <HorizontalStackLayout>
+                <Button Text="Confirm" Clicked="OnGetNumberClicked" Margin="50,10,0,0" FontSize="15" HeightRequest="25" WidthRequest="90"/>
+                <Label x:Name="resultLabel" Margin="15,25,0,0"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label
+                    x:Name="UnitPrice"
+                    Margin="-50,10,0,0"
+                    Text="Price per unit : 200$"
+                    HorizontalOptions="CenterAndExpand"/>
+                <Label
+                    x:Name="MySize"
+                    Margin="40,10,0,0"
+                    HorizontalOptions="CenterAndExpand"/>
+                <Label
+                    x:Name="MyColor"
+                    Margin="40,10,0,0"
+                    HorizontalOptions="CenterAndExpand"/>
+                <Label
+                    x:Name="MyNumber"
+                    Margin="40,10,0,0"
+                    HorizontalOptions="CenterAndExpand"/>
 
 
+            </HorizontalStackLayout>
+
+
+            <Button Text="Add to cart"
+                    Clicked="Button_Clicked"
+                    Margin="0,40,0,0"/>
 
         </VerticalStackLayout>
 

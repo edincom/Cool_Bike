@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-//using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 
 namespace Nice_bike;
 
 public class Bike
 {
     public string Model { get; set; }
-    public int Size { get; set; }
+    public string Size { get; set; }
     public string Color { get; set; }
     public double Price { get; set; }
-    public int Quantity { get; set; } = 1;
+    public int Quantity { get; set; } = 1 ;
 
-    public Bike(string model, int size, string color, double price)
+    public Bike(string model, string size, string color, double price)
     {
         Model = model;
         Size = size;
@@ -23,12 +23,11 @@ public class Bike
 
 public partial class Panier : ContentPage
 {
-    private List<Bike> bikes = new List<Bike>();
+    public static List<Bike> bikes = new List<Bike>();
     private List<Bike> cartItems = new List<Bike>();
 
     private ObservableCollection<Bike> cartItemsObservableCollection = new ObservableCollection<Bike>();
-    /*     _clients = GetClients();
-         clientsListBox.ItemsSource = _clients;*/
+ 
 
     public Panier()
     {
@@ -36,10 +35,7 @@ public partial class Panier : ContentPage
 
 
         // Ajouter des produits
-        bikes.Add(new Bike("City", 28, "purple", 200));
-        bikes.Add(new Bike("Adventure", 26, "Blue", 250));
-        bikes.Add(new Bike("City", 26, "red", 200));
-        bikes.Add(new Bike("Explorer", 28, "black", 300));
+        bikes.Add(new Bike("City", "28", "purple", 200));
 
         // Afficher la liste des produits
         bikeList.ItemsSource = bikes;
@@ -127,10 +123,9 @@ public partial class Panier : ContentPage
 
         if (answer)
         {
-            // Envoyer la commande à un service de commande
-            // ...
-           /* SendCartToDatabase(cartItems);
-    {
+            
+            SendCartToDatabase(cartItems);
+            {
                 string connectionString = "server=localhost;database=database_name;uid=username;password=usr_password;";
 
                 try
@@ -156,7 +151,7 @@ public partial class Panier : ContentPage
                 {
                     Console.WriteLine(ex.Message);
                 }
-            }*/
+            }
 
 
 
@@ -173,34 +168,34 @@ public partial class Panier : ContentPage
             await Navigation.PopToRootAsync();
         }
     }
-    /* private void SendCartToDatabase(List<Bike> cartItems)
-     {
-         string connectionString = "server=localhost;database=nice_bike;uid=root;password=12345678;";
+    private void SendCartToDatabase(List<Bike> cartItems)
+    {
+        string connectionString = "server=localhost;database=nice_bike;uid=root;password=12345678;";
 
-         try
-         {
-             using (MySqlConnection connection = new MySqlConnection(connectionString))
-             {
-                 connection.Open();
+        try
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
 
-                 foreach (Bike item in cartItems)
-                 {
-                     string query = "INSERT INTO commande (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
-                     MySqlCommand command = new MySqlCommand(query, connection);
-                     command.Parameters.AddWithValue("@model", item.Model);
-                     command.Parameters.AddWithValue("@size", item.Size);
-                     command.Parameters.AddWithValue("@color", item.Color);
-                     command.Parameters.AddWithValue("@price", item.Price);
-                     command.Parameters.AddWithValue("@quantity", item.Quantity);
-                     command.ExecuteNonQuery();
-                 }
-             }
-         }
-         catch (Exception ex)
-         {
-             Console.WriteLine(ex.Message);
-         }
-     }*/
+                foreach (Bike item in cartItems)
+                {
+                    string query = "INSERT INTO commande (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@model", item.Model);
+                    command.Parameters.AddWithValue("@size", item.Size);
+                    command.Parameters.AddWithValue("@color", item.Color);
+                    command.Parameters.AddWithValue("@price", item.Price);
+                    command.Parameters.AddWithValue("@quantity", item.Quantity);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
     protected override void OnAppearing()
     {
         base.OnAppearing();
