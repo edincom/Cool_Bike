@@ -47,7 +47,7 @@ public partial class City : ContentPage
         int number1;
         if (int.TryParse(QuantityEntry1.Text, out number1))
         {
-            MyNumber1.Text = $"Quantity : {number1}";
+            MyNumber1.Text = number1.ToString();
         }
         else
         {
@@ -57,7 +57,7 @@ public partial class City : ContentPage
     private async void Button_Clicked(object sender, EventArgs e)
     {
         var Panier = new Panier();
-        Panier.bikes.Add(new Bike("City", MySize1.Text, MyColor1.Text, 200));
+        Panier.bikes.Add(new Bike("City", MySize1.Text, MyColor1.Text, 200, Convert.ToInt32(MyNumber1.Text)));
         await Navigation.PushAsync(Panier);
     }
 

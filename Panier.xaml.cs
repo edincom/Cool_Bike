@@ -18,12 +18,13 @@ public class Bike
     public double Price { get; set; }
     public int Quantity { get; set; } = 1;
 
-    public Bike(string model, string size, string color, double price)
+    public Bike(string model, string size, string color, double price, int quantity)
     {
         Model = model;
         Size = size;
         Color = color;
         Price = price;
+        Quantity = quantity;
     }
 }
 
