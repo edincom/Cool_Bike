@@ -127,7 +127,7 @@ public partial class Panier : ContentPage
             
             SendCartToDatabase(cartItems);
             {
-                string connectionString = "server=localhost;database=database_name;uid=username;password=usr_password;";
+                string connectionString = "server=pat.infolab.ecam.be;port:63324;database=bike2;uid=user2;password=12345;";
 
                 try
                 {
@@ -171,7 +171,7 @@ public partial class Panier : ContentPage
     }
     private void SendCartToDatabase(List<Bike> cartItems)
     {
-        string connectionString = "server=localhost;database=nice_bike;uid=root;password=12345678;";
+        string connectionString = "server=pat.infolab.ecam.be;port:63324;database=bike2;uid=user2;password=12345;";
 
         try
         {
