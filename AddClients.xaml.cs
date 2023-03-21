@@ -21,7 +21,7 @@ public partial class AddClients : ContentPage
         string nom = NomEntry.Text;
         string adresse = AdresseEntry.Text;
         string tva = TVAEntry.Text;
-        MySqlConnection connection = new MySqlConnection("server=pat.infolab.ecam.be;port:63324;database=database_name;uid=user2;password=12345;");
+        MySqlConnection connection = new MySqlConnection("server=pat.infolab.ecam.be;port=63324;database=bike2;uid=user2;password=12345;");
         connection.Open();
         string insertQuery = "INSERT INTO save_client (name,adresse,tva) VALUES (@Name, @Adresse, @TVA)";
         MySqlCommand command = new MySqlCommand(insertQuery, connection);
