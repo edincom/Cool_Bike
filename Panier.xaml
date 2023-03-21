@@ -24,6 +24,10 @@
                             <Label Text="{Binding Price, StringFormat='${0:N2}'}"
                                    FontSize="Medium"
                                    HorizontalOptions="End"/>
+                            <Label Text="{Binding Quantity}"
+                                   FontSize="Medium"
+                                   HorizontalOptions="StartAndExpand"/>
+
                             <Button Text="Add to cart"
                                     Clicked="AddToCart_Clicked"
                                     BindingContext="{Binding .}"
