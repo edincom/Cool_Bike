@@ -23,11 +23,11 @@ public partial class AddClients : ContentPage
         string tva = TVAEntry.Text;
         MySqlConnection connection = new MySqlConnection("server=pat.infolab.ecam.be;port=63324;database=bike2;uid=user2;password=12345;");
         connection.Open();
-        string insertQuery = "INSERT INTO save_client (name,adresse,tva) VALUES (@Name, @Adresse, @TVA)";
+        string insertQuery = "INSERT INTO clients (name,address,tva) VALUES (@Name, @Address, @TVA)";
         MySqlCommand command = new MySqlCommand(insertQuery, connection);
 
         command.Parameters.AddWithValue("@Name", NomEntry.Text);
-        command.Parameters.AddWithValue("@Adresse", AdresseEntry.Text);
+        command.Parameters.AddWithValue("@Address", AdresseEntry.Text);
         command.Parameters.AddWithValue("@TVA", TVAEntry.Text);
 
 
