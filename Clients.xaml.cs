@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using Microsoft.Maui.Controls;
-using System.Collections.ObjectModel;
-using Nice_bike.ViewModels;
-
 namespace Nice_bike;
 
 public partial class Clients : ContentPage
@@ -31,7 +28,7 @@ public partial class Clients : ContentPage
 
         // Créer une liste d'objets pour stocker les données de la table
 
-        ObservableCollection<MyTableData> dataList = new ObservableCollection<MyTableData>();
+        List<MyTableData> dataList = new List<MyTableData>();
 
         // Parcourir les résultats de la requête SELECT et stocker les données dans la liste
         while (reader.Read())

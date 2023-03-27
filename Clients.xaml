@@ -4,40 +4,18 @@
              x:Class="Nice_bike.Clients"
              Title="Clients">
     <StackLayout>
-        <TableView x:Name="myListView">
-            <TableRoot>
-                <TableSection>
+        <ListView x:Name="myListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
                     <ViewCell>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="Propriete1" Grid.Column="0" />
-                            <Label Text="Propriete2" Grid.Column="1" />
-                            <Label Text="Propriete3" Grid.Column="2" />
-                            <Label Text="Propriete4" Grid.Column="3" />
-                        </Grid>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Propriete1}" />
+                            <Label Text="{Binding Propriete2}" />
+                        </StackLayout>
                     </ViewCell>
-                    <ViewCell>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Propriete1}" Grid.Column="0" />
-                            <Label Text="{Binding Propriete2}" Grid.Column="1" />
-                            <Label Text="{Binding Propriete3}" Grid.Column="2" />
-                            <Label Text="{Binding Propriete4}" Grid.Column="3" />
-                        </Grid>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </ContentPage>
 
