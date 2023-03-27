@@ -3,22 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Nice_bike.Clients"
              Title="Clients">
-    <ListView x:Name="myListView">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding Propriete1}" />
-                        <Label Text="{Binding Propriete2}" />
-                        <Label Text="{Binding Propriete3}" />
-                        <Label Text="{Binding Propriete4}" />
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <StackLayout>
+        <TableView x:Name="myListView">
+            <TableRoot>
+                <TableSection>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Propriete1" Grid.Column="0" />
+                            <Label Text="Propriete2" Grid.Column="1" />
+                            <Label Text="Propriete3" Grid.Column="2" />
+                            <Label Text="Propriete4" Grid.Column="3" />
+                        </Grid>
+                    </ViewCell>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Propriete1}" Grid.Column="0" />
+                            <Label Text="{Binding Propriete2}" Grid.Column="1" />
+                            <Label Text="{Binding Propriete3}" Grid.Column="2" />
+                            <Label Text="{Binding Propriete4}" Grid.Column="3" />
+                        </Grid>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </StackLayout>
 </ContentPage>
-
-
 
 
