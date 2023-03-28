@@ -2,33 +2,24 @@ namespace Nice_bike;
 
 public partial class SR : ContentPage
 {
-	public SR()
-	{
-		InitializeComponent();
-	}
-    private void Button_Adventure_Clicked(object sender, EventArgs e)
+    public SR()
     {
-
-        Navigation.PushAsync(new Adventure());
-
+        InitializeComponent();
     }
-    private void Button_Explorer_Clicked(object sender, EventArgs e)
+ 
+    private void Button_Catalog_Clicked(object sender, EventArgs e)
     {
 
-        Navigation.PushAsync(new Explorer());
-
-    }
-    private void Button_City_Clicked(object sender, EventArgs e)
-    {
-
-        Navigation.PushAsync(new City());
-
-    }
-    private void Button_Panier_Clicked(object sender, EventArgs e)
-    {
-
-        Navigation.PushAsync(new Panier());
+        Navigation.PushAsync(new Catalog());
 
     }
     
+    private void Button_Clients_Clicked(object sender, EventArgs e)
+    {
+
+        Navigation.PushAsync(new Clients());
+
+    }
+
+
 }

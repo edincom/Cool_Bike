@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Nice_bike.Catalog"
+             Title="Catalog">
+
+    <AbsoluteLayout>
+        <Label  AbsoluteLayout.LayoutBounds ="0.5,0,400,300"
+                AbsoluteLayout.LayoutFlags= "PositionProportional"
+            Text ="Welcome to our catalog"
+            FontAttributes="Bold"
+            TextColor="DarkOrange"
+            FontSize="34"
+             />
+        <Label  AbsoluteLayout.LayoutBounds ="0.56,0.1,400,300"
+                AbsoluteLayout.LayoutFlags= "PositionProportional"
+            Text ="Choose your bike"
+            TextColor="DarkOrange"
+            FontSize="32" />
+
+
+        <Image Source="adventure_orange.png"
+           AbsoluteLayout.LayoutBounds ="0.12,0.5,300,300"
+                AbsoluteLayout.LayoutFlags= "PositionProportional" />
+        <Button Text="Adventure"
+                x:Name="Btn_SR"
+                BackgroundColor="DarkOrange"
+                AbsoluteLayout.LayoutBounds ="0.15,0.3,200,50"
+                AbsoluteLayout.LayoutFlags= "PositionProportional"
+                Clicked="Button_Adventure_Clicked" />
+        <Image Source="explorer_orange.png"
+           AbsoluteLayout.LayoutBounds ="0.5,0.5,300,300"
+               AbsoluteLayout.LayoutFlags= "PositionProportional"/>
+        <Button Text="Explorer"
+                x:Name="Btn_PM"
+                BackgroundColor="DarkOrange"
+                 AbsoluteLayout.LayoutBounds ="0.5,0.3,200,50"
+                AbsoluteLayout.LayoutFlags= "PositionProportional"
+                Clicked="Button_Explorer_Clicked" />
+        <Image Source="city_orange.png"
+           AbsoluteLayout.LayoutBounds ="0.88,0.5,300,300"
+               AbsoluteLayout.LayoutFlags= "PositionProportional"/>
+        <Button Text="City"
+                x:Name="Btn_Assembler"
+                BackgroundColor="DarkOrange"
+               AbsoluteLayout.LayoutBounds ="0.85,0.3,200,50"
+               AbsoluteLayout.LayoutFlags= "PositionProportional"
+                Clicked="Button_City_Clicked" />
+
+        <ImageButton Source="panier.jpg"
+           Clicked="Button_Panier_Clicked"
+           AbsoluteLayout.LayoutBounds ="1,1.1,200,300"
+           AbsoluteLayout.LayoutFlags= "PositionProportional"/>
+    </AbsoluteLayout>
+
+</ContentPage>
