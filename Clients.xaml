@@ -39,7 +39,7 @@
                             <Entry Text="{Binding name}" Grid.Column="1" />
                             <Entry Text="{Binding address}" Grid.Column="2" />
                             <Entry Text="{Binding TVA}" Grid.Column="3" />
-                            <Button Text="Update" Clicked="Update" Grid.Column="4" />
+                            <Button Text="Update" BackgroundColor="DarkOrange" Clicked="Update" Grid.Column="4"  />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
