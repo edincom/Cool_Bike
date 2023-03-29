@@ -4,20 +4,28 @@
              x:Class="Nice_bike.SR"
              Title="Sale Representative">
 
-    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-        <StackLayout Orientation="Horizontal">
+    <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.Column="0" HorizontalOptions="Center">
             <Button Text="Catalog"
-                x:Name="Btn_Catalog"
-                BackgroundColor="DarkOrange"
-               AbsoluteLayout.LayoutBounds ="0.85,0.3,200,50"
-               AbsoluteLayout.LayoutFlags= "PositionProportional"
-                Clicked="Button_Catalog_Clicked" />
-            <Button Text="Clients"
-                x:Name="Btn_Clients"
-                BackgroundColor="DarkOrange"
-               AbsoluteLayout.LayoutBounds ="0.85,0.3,200,50"
-               AbsoluteLayout.LayoutFlags= "PositionProportional"
-                Clicked="Button_Clients_Clicked" />
+                    x:Name="Btn_Catalog"
+                    BackgroundColor="DarkOrange"
+                    Margin="20, 10, 20, 10"
+                    Clicked="Button_Catalog_Clicked" />
+            <Image Source="images.png" HeightRequest="200" Margin="0, 20, 0, 0" />
         </StackLayout>
-    </StackLayout>
+
+        <StackLayout Grid.Column="1" HorizontalOptions="Center" >
+            <Button Text="Clients"
+                    x:Name="Btn_Clients"
+                    BackgroundColor="DarkOrange"
+                    Margin="20, 10, 20, 10"
+                    Clicked="Button_Clients_Clicked" />
+            <Image Source="clients.png" HeightRequest="200" Margin="0, 20, 0, 0" />
+        </StackLayout>
+    </Grid>
 </ContentPage>

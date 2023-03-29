@@ -75,7 +75,7 @@
                 <Entry x:Name="QuantityEntry" Grid.Row="2" Margin="50, 30, 50, 0" Keyboard="Numeric" Placeholder="Enter a number"/>
             </Grid>
             <HorizontalStackLayout>
-                <Button Text="Confirm" Clicked="OnGetNumberClicked" Margin="50,10,0,0" FontSize="15" HeightRequest="25" WidthRequest="90"/>
+                <Button Text="Confirm" BackgroundColor="DarkOrange" Clicked="OnGetNumberClicked" Margin="50,10,0,0" FontSize="15" HeightRequest="25" WidthRequest="90"/>
                 <Label x:Name="resultLabel" Margin="15,25,0,0"/>
             </HorizontalStackLayout>
             <HorizontalStackLayout>
@@ -102,6 +102,7 @@
 
 
             <Button Text="Add to cart"
+                    BackgroundColor="DarkOrange"
                     Clicked="Button_Clicked"
                     Margin="0,40,0,0"/>
 

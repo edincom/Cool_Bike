@@ -203,10 +203,54 @@ public partial class Panier : ContentPage
         LoadClients();
     }
 
-    private void LoadClients()
+    private async void LoadClients()
     {
-        List<Client> clients = ClientManager.GetClients();
-        ClientsPicker.ItemsSource = clients.OrderBy(c => c.Nom).ToList();
+        try
+        {
+            List<Client> clients = await Task.Run(() =>
+            {
+                // Charger les clients à partir de la base de données
+                return GetClientsFromDatabase();
+            });
+
+            // Mettre à jour l'interface utilisateur
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                ClientsPicker.ItemsSource = clients.OrderBy(c => c.Nom).ToList();
+            });
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Erreur", ex.Message, "OK");
+        }
+    }
+
+    private List<Client> GetClientsFromDatabase()
+    {
+        string connectionString = "server=pat.infolab.ecam.be;port=63324;database=bike2;uid=user2;password=12345;";
+        List<Client> clients = new List<Client>();
+
+        using (MySqlConnection connection = new MySqlConnection(connectionString))
+        {
+            connection.Open();
+            string query = "SELECT name, address, TVA FROM clients";
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Client client = new Client
+                    {
+                        Nom = reader.GetString(0),
+                        Adresse = reader.GetString(1),
+                        TVA = reader.GetString(2)
+                    };
+                    clients.Add(client);
+                }
+            }
+        }
+        return clients;
     }
 
     private async void EnregistrerButton_Clicked(object sender, System.EventArgs e)
