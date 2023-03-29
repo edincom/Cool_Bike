@@ -13,9 +13,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Picker x:Name="ClientsPicker" ItemDisplayBinding="{Binding Nom}" Grid.Row="0" Grid.Column="0" HeightRequest="50" WidthRequest="400"/>
+            <Picker x:Name="ClientsPicker" ItemDisplayBinding="{Binding Nom}" Grid.Row="0" Grid.Column="0" HeightRequest="50" WidthRequest="800"/>
 
-            <Button Text="Enregistrer un client" Clicked="EnregistrerButton_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="50"/>
+            <Button Text="Enregistrer un client" BackgroundColor="DarkOrange" Clicked="EnregistrerButton_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="50"/>
         </Grid>
 
         <Label Text="List of Bikes" FontAttributes="Bold" FontSize="Large" Margin="10,10,10,0" />
@@ -41,6 +41,7 @@
                                    FontSize="Medium"
                                    HorizontalOptions="End"/>
                             <Button Text="Add to cart"
+                                    BackgroundColor="DarkOrange"
                                     Clicked="AddToCart_Clicked"
                                     BindingContext="{Binding .}"
                                     Margin="10,0,0,0"/>
@@ -92,9 +93,9 @@
                             <Label Text="{Binding Color}" Grid.Column="2" />
                             <Label Text="{Binding Price, StringFormat='€{0:N2}'}" Grid.Column="3" />
                             <StackLayout Grid.Column="4" Orientation="Horizontal">
-                                <Button Text="-" Clicked="RemoveItem_Clicked" BindingContext="{Binding .}" />
+                                <Button Text="-" BackgroundColor="DarkOrange" Clicked="RemoveItem_Clicked" BindingContext="{Binding .}" />
                                 <Label Text="{Binding Quantity}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Large" Margin="10,0" />
-                                <Button Text="+" Clicked="AddItem_Clicked" BindingContext="{Binding .}" />
+                                <Button Text="+" BackgroundColor="DarkOrange" Clicked="AddItem_Clicked" BindingContext="{Binding .}" />
                             </StackLayout>
                         </Grid>
                     </ViewCell>
@@ -104,7 +105,7 @@
 
         <Label Text="{Binding Total, StringFormat='€{0:N2}'}" FontSize="Medium" Margin="10" />
 
-        <Button Text="Finalize the order" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="10" Clicked="Checkout_Clicked" />
+        <Button Text="Finalize the order" BackgroundColor="DarkOrange" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="10" Clicked="Checkout_Clicked" />
 
     </StackLayout>
 </ContentPage>
