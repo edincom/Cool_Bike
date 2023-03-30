@@ -39,6 +39,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
 
                     </Grid.ColumnDefinitions>
 
@@ -48,6 +49,7 @@
                     <Label Text="Color" Grid.Column="3" FontAttributes="Bold" />
                     <Label Text="Price" Grid.Column="4" FontAttributes="Bold" />
                     <Label Text="Quantity" Grid.Column="5" FontAttributes="Bold" />
+                    <Label Text="Loading/Finished" Grid.Column="6" FontAttributes="Bold" />
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate >
@@ -55,6 +57,7 @@
                     <ViewCell >
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
@@ -69,6 +72,7 @@
                             <Label Text="{Binding color}" Grid.Column="3" />
                             <Label Text="{Binding price}" Grid.Column="4" />
                             <Label Text="{Binding quantity}" Grid.Column="5" />
+                            <Switch IsToggled="False" OnColor="Orange" ThumbColor="White"  Grid.Column="6"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
