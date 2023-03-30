@@ -19,5 +19,9 @@ public partial class PM : ContentPage
         Navigation.PushAsync(new Stock());
 
     }
+    public void Button_DetailOrder_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new Order_Details());
+    }
 
 }
