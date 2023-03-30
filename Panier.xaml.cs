@@ -28,7 +28,8 @@ public partial class Panier : ContentPage
     private List<Bike> cartItems = new List<Bike>();
 
     private ObservableCollection<Bike> cartItemsObservableCollection = new ObservableCollection<Bike>();
- 
+    private static int OrderNumber = new Random().Next(1000, 9999);
+
 
     public Panier()
     {
@@ -126,38 +127,6 @@ public partial class Panier : ContentPage
         {
             
             SendCartToDatabase(cartItems);
-            {
-                string connectionString = "server=pat.infolab.ecam.be;port=63324;database=bike2;uid=user2;password=12345;";
-
-                try
-                {
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
-                    {
-                        connection.Open();
-
-                        foreach (Bike item in cartItems)
-                        {
-                            string query = "INSERT INTO commande (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
-                            MySqlCommand command = new MySqlCommand(query, connection);
-                            command.Parameters.AddWithValue("@model", item.Model);
-                            command.Parameters.AddWithValue("@size", item.Size);
-                            command.Parameters.AddWithValue("@color", item.Color);
-                            command.Parameters.AddWithValue("@price", item.Price);
-                            command.Parameters.AddWithValue("@quantity", item.Quantity);
-                            command.ExecuteNonQuery();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-
-
-
-
-
             // Vider le panier
             ClearCart();
 
@@ -178,17 +147,20 @@ public partial class Panier : ContentPage
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-
+                int NumOrder = GenerateOrderNumber();
                 foreach (Bike item in cartItems)
                 {
-                    string query = "INSERT INTO commande (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
-                    MySqlCommand command = new MySqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@model", item.Model);
-                    command.Parameters.AddWithValue("@size", item.Size);
-                    command.Parameters.AddWithValue("@color", item.Color);
-                    command.Parameters.AddWithValue("@price", item.Price);
-                    command.Parameters.AddWithValue("@quantity", item.Quantity);
-                    command.ExecuteNonQuery();
+                    for (int i=0; i<item.Quantity;i++)
+                    {
+                        string query = "INSERT INTO commande (model, size, color, price, NumOrder) VALUES (@model, @size, @color, @price, @NumOrder)";
+                        MySqlCommand command = new MySqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@model", item.Model);
+                        command.Parameters.AddWithValue("@size", item.Size);
+                        command.Parameters.AddWithValue("@color", item.Color);
+                        command.Parameters.AddWithValue("@price", item.Price);
+                        command.Parameters.AddWithValue("@NumOrder", NumOrder);
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
         }
@@ -265,5 +237,10 @@ public partial class Panier : ContentPage
         {
             DisplayAlert("Client sélectionné", selectedClient.Nom, "OK");
         }
+    }
+    private int GenerateOrderNumber()
+    {
+        Random rnd = new Random();
+        return rnd.Next(100000, 999999);
     }
 }
