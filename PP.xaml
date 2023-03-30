@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Nice_bike.PP"
+             Title="Orders">
+
+    <StackLayout>
+        <HorizontalStackLayout >
+            <Button Text="Up"
+                x:Name="Btn_Up"
+                BackgroundColor="DarkOrange"
+                Clicked = "myListView_UpClick" />
+
+            <Button Text="Down"
+                x:Name="Btn_Down"
+                BackgroundColor="DarkOrange"
+                Clicked="myListView_DownClick"/>
+            <Button Text="Delete"
+                x:Name="Btn_Delete"
+                BackgroundColor="DarkOrange"
+                Clicked= "myListView_DeleteClick"/>
+            <Button Text="Save"
+                x:Name="Btn_Save"
+                BackgroundColor="DarkOrange"
+                Clicked= "myListView_SaveClick"/>
+
+
+        </HorizontalStackLayout>
+
+        <ListView x:Name="myListView"
+                  Margin="0,20"
+                  SeparatorVisibility="None">
+            <ListView.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Id" Grid.Column="0" FontAttributes="Bold" />
+                    <Label Text="Model" Grid.Column="1" FontAttributes="Bold" />
+                    <Label Text="Size" Grid.Column="2" FontAttributes="Bold" />
+                    <Label Text="Color" Grid.Column="3" FontAttributes="Bold" />
+                    <Label Text="Price" Grid.Column="4" FontAttributes="Bold" />
+                    <Label Text="Quantity" Grid.Column="5" FontAttributes="Bold" />
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate >
+                <DataTemplate >
+                    <ViewCell >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding id}" Grid.Column="0"/>
+                            <Label Text="{Binding model}" Grid.Column="1" />
+                            <Label Text="{Binding size}" Grid.Column="2" />
+                            <Label Text="{Binding color}" Grid.Column="3" />
+                            <Label Text="{Binding price}" Grid.Column="4" />
+                            <Label Text="{Binding quantity}" Grid.Column="5" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

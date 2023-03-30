@@ -4,10 +4,20 @@
              x:Class="Nice_bike.PM"
              Title="Production Manager">
 
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Production Planning"
+                x:Name="Btn_Catalog"
+                BackgroundColor="DarkOrange"
+               AbsoluteLayout.LayoutBounds ="0.85,0.3,200,50"
+               AbsoluteLayout.LayoutFlags= "PositionProportional"
+                Clicked="Button_PP_Clicked" />
+            <Button Text="Stock"
+                x:Name="Btn_Clients"
+                BackgroundColor="DarkOrange"
+               AbsoluteLayout.LayoutBounds ="0.85,0.3,200,50"
+               AbsoluteLayout.LayoutFlags= "PositionProportional"
+                Clicked="Button_Stock_Clicked" />
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
