@@ -52,17 +52,12 @@ public partial class Panier : ContentPage
     {
         //var button = sender as Button;
 
-        Button button = (Button)sender;
+        var button = sender as Button;
         var bike = button.BindingContext as Bike;
-        Bike selectedBike = (Bike)button.BindingContext;
+
         
         // Ajouter l'article au panier
         cartItems.Add(bike);
-        // Assign the selected customer to the Customer property of the selected bike
-        selectedBike.Customer = (Client)ClientsPicker.SelectedItem;
-
-        // Add the selected bike to the cartItems list
-        cartItems.Add(selectedBike);
 
         // Mettre à jour le total du panier
         UpdateCartTotal();
