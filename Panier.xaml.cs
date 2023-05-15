@@ -11,6 +11,7 @@ public class Bike
     public string Color { get; set; }
     public double Price { get; set; }
     public int Quantity { get; set; } = 1 ;
+    public Client Customer { get; set; }
 
     public Bike(string model, string size, string color, double price, int quantity)
     {
@@ -49,11 +50,19 @@ public partial class Panier : ContentPage
 
     private void AddToCart_Clicked(object sender, System.EventArgs e)
     {
-        var button = sender as Button;
-        var bike = button.BindingContext as Bike;
+        //var button = sender as Button;
 
+        Button button = (Button)sender;
+        var bike = button.BindingContext as Bike;
+        Bike selectedBike = (Bike)button.BindingContext;
+        
         // Ajouter l'article au panier
         cartItems.Add(bike);
+        // Assign the selected customer to the Customer property of the selected bike
+        selectedBike.Customer = (Client)ClientsPicker.SelectedItem;
+
+        // Add the selected bike to the cartItems list
+        cartItems.Add(selectedBike);
 
         // Mettre à jour le total du panier
         UpdateCartTotal();
@@ -150,15 +159,18 @@ public partial class Panier : ContentPage
                 int NumOrder = GenerateOrderNumber();
                 foreach (Bike item in cartItems)
                 {
+                 
+                    Client selectedClient = (Client)ClientsPicker.SelectedItem;
                     for (int i=0; i<item.Quantity;i++)
                     {
-                        string query = "INSERT INTO commande (model, size, color, price, NumOrder) VALUES (@model, @size, @color, @price, @NumOrder)";
+                        string query = "INSERT INTO commande (model, size, color, price, NumOrder, customer) VALUES (@model, @size, @color, @price, @NumOrder, @customer)";
                         MySqlCommand command = new MySqlCommand(query, connection);
                         command.Parameters.AddWithValue("@model", item.Model);
                         command.Parameters.AddWithValue("@size", item.Size);
                         command.Parameters.AddWithValue("@color", item.Color);
                         command.Parameters.AddWithValue("@price", item.Price);
                         command.Parameters.AddWithValue("@NumOrder", NumOrder);
+                        command.Parameters.AddWithValue("@customer", selectedClient.Nom);
                         command.ExecuteNonQuery();
                     }
                 }
