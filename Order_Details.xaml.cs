@@ -34,12 +34,12 @@ public partial class Order_Details : ContentPage
         {
             MyTableData rowData = new MyTableData()
             {
-                id = reader.GetInt32(0),
-                model = reader.GetString(1),
-                size = reader.GetInt32(2),
-                color = reader.GetString(3),
-                price = reader.GetInt32(4),
-                quantity = reader.GetInt32(5)
+                id = reader.IsDBNull(0) ? null : reader.GetString(0),
+                model = reader.IsDBNull(1) ? null : reader.GetString(1),
+                size = reader.IsDBNull(2) ? null : reader.GetString(2),
+                color = reader.IsDBNull(3) ? null : reader.GetString(3),
+                price = reader.IsDBNull(4) ? null : reader.GetString(4),
+                quantity = reader.IsDBNull(5) ? null : reader.GetString(5)
 
             };
             dataList.Add(rowData);
@@ -55,14 +55,14 @@ public partial class Order_Details : ContentPage
     }
     public class MyTableData
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string model { get; set; }
-        public int size { get; set; }
+        public string size { get; set; }
         public string color { get; set; }
 
-        public int price { get; set; }
+        public string price { get; set; }
 
-        public int quantity { get; set; }
+        public string quantity { get; set; }
         public int rowData { get; set; }
     }
 }

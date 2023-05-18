@@ -36,9 +36,6 @@ public partial class Panier : ContentPage
         InitializeComponent();
 
 
-        // Ajouter des produits
-        bikes.Add(new Bike("City", "28", "purple", 200, 67));
-
         // Afficher la liste des produits
         bikeList.ItemsSource = bikes;
 
@@ -148,17 +145,19 @@ public partial class Panier : ContentPage
             {
                 connection.Open();
                 int NumOrder = GenerateOrderNumber();
+                Client selectedClient = (Client)ClientsPicker.SelectedItem;
                 foreach (Bike item in cartItems)
                 {
                     for (int i=0; i<item.Quantity;i++)
                     {
-                        string query = "INSERT INTO commande (model, size, color, price, NumOrder) VALUES (@model, @size, @color, @price, @NumOrder)";
+                        string query = "INSERT INTO commande (model, size, color, price, NumOrder, customer) VALUES (@model, @size, @color, @price, @NumOrder, @customer)";
                         MySqlCommand command = new MySqlCommand(query, connection);
                         command.Parameters.AddWithValue("@model", item.Model);
                         command.Parameters.AddWithValue("@size", item.Size);
                         command.Parameters.AddWithValue("@color", item.Color);
                         command.Parameters.AddWithValue("@price", item.Price);
                         command.Parameters.AddWithValue("@NumOrder", NumOrder);
+                        command.Parameters.AddWithValue("@customer", selectedClient.Nom);
                         command.ExecuteNonQuery();
                     }
                 }

@@ -24,4 +24,11 @@ public partial class PM : ContentPage
         Navigation.PushAsync(new Order_Details());
     }
 
+    private void Button_Stockcomp_Clicked(object sender, EventArgs e)
+    {
+
+        Navigation.PushAsync(new Composant());
+
+    }
+
 }
