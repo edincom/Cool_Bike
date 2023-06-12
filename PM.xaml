@@ -12,21 +12,21 @@
                AbsoluteLayout.LayoutBounds ="0.85,0.3,200,50"
                AbsoluteLayout.LayoutFlags= "PositionProportional"
                 Clicked="Button_PP_Clicked" />
-            <Button Text="Stock vélos"
+            <Button Text="Bike Invetory "
                 x:Name="Btn_Clients"
                 BackgroundColor="DarkOrange"
                AbsoluteLayout.LayoutBounds ="0.85,0.3,200,50"
                AbsoluteLayout.LayoutFlags= "PositionProportional"
                 Clicked="Button_Stock_Clicked" />
 
-            <Button Text="Stock Composants"
+            <Button Text="Component Inventory"
                 x:Name="Btn_Compo"
                 BackgroundColor="DarkOrange"
                AbsoluteLayout.LayoutBounds ="0.85,0.3,200,50"
                AbsoluteLayout.LayoutFlags= "PositionProportional"
                 Clicked="Button_Stockcomp_Clicked" />
             
-            <Button Text="order details"
+            <Button Text="Order Details"
                 x:Name="Detail_Order"
                 BackgroundColor="DarkOrange"
                AbsoluteLayout.LayoutBounds ="0.85,0.3,200,50"

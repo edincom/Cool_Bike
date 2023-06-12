@@ -1,66 +1,88 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
              x:Class="Nice_bike.Order_Details"
-             Title="Order_Details">
-    <VerticalStackLayout>
-        <Label 
-            Text="Orders details"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <ListView x:Name="myListView"
-                  Margin="0,20"
-                  SeparatorVisibility="None">
-            <ListView.Header>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+             Title="Order Details">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#FF8C00</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
+    <StackLayout Spacing="10" Padding="20">
+        <Label Text="Order Information" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" TextColor="{StaticResource PrimaryColor}" />
+        <ListView x:Name="orderListView" ItemsSource="{Binding Orders}" SeparatorVisibility="Default" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="10" BackgroundColor="#F5F5F5" CornerRadius="5" Margin="0,10,0,0">
+                            <StackLayout Spacing="5">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Num Order:" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="Start" />
+                                    <Label Text="{Binding NumOrder}" FontSize="16" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="StartAndExpand" />
+                                    <Label Text="Client:" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="Start" />
+                                    <Label Text="{Binding Customer}" FontSize="16" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="StartAndExpand" />
+                                    <Label Text="Delivery:" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" HorizontalOptions="Start" VerticalOptions="Center" />
+                                    <Switch IsToggled="{Binding IsOrderSelected}" Toggled="OnToggleSwitchToggled" HorizontalOptions="Start" VerticalOptions="Center" />
+                                </StackLayout>
+                                <Label Text="Bikes" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" Margin="0,10,0,0" />
+                                <ListView ItemsSource="{Binding Bikes}" SeparatorVisibility="Default" HasUnevenRows="True">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Frame Padding="10" BackgroundColor="White" CornerRadius="5">
+                                                    <Frame.Style>
+                                                        <Style TargetType="Frame">
+                                                            <Style.Triggers>
+                                                                <DataTrigger TargetType="Frame" Binding="{Binding IsBikeDone}" Value="True">
+                                                                    <Setter Property="BackgroundColor" Value="Green" />
+                                                                </DataTrigger>
+                                                                <DataTrigger TargetType="Frame" Binding="{Binding IsBikeDone}" Value="False">
+                                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Frame.Style>
+                                                    <Grid ColumnSpacing="10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Text="IdBike:" FontSize="14" TextColor="{StaticResource PrimaryColor}" Grid.Column="0" HorizontalOptions="End" />
+                                                        <Label Text="{Binding IDBike}" FontSize="14" Grid.Column="1" HorizontalOptions="Start" />
 
-                    </Grid.ColumnDefinitions>
+                                                        <Label Text="Model:" FontSize="14" TextColor="{StaticResource PrimaryColor}" Grid.Column="2" HorizontalOptions="End" />
+                                                        <Label Text="{Binding Model}" FontSize="14" Grid.Column="3" HorizontalOptions="Start" />
 
-                    <Label Text="Id" Grid.Column="0" FontAttributes="Bold" />
-                    <Label Text="Model" Grid.Column="1" FontAttributes="Bold" />
-                    <Label Text="Size" Grid.Column="2" FontAttributes="Bold" />
-                    <Label Text="Color" Grid.Column="3" FontAttributes="Bold" />
-                    <Label Text="Price" Grid.Column="4" FontAttributes="Bold" />
-                    <Label Text="Quantity" Grid.Column="5" FontAttributes="Bold" />
-                    <Label Text="Loading/Finish" Grid.Column="6" FontAttributes="Bold" />
-                </Grid>
-            </ListView.Header>
-            <ListView.ItemTemplate >
-                <DataTemplate >
-                    <ViewCell >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                                        <Label Text="Size:" FontSize="14" TextColor="{StaticResource PrimaryColor}" Grid.Column="4" HorizontalOptions="End" />
+                                                        <Label Text="{Binding Size}" FontSize="14" Grid.Column="5" HorizontalOptions="Start" />
 
+                                                        <Label Text="Color:" FontSize="14" TextColor="{StaticResource PrimaryColor}" Grid.Column="6" HorizontalOptions="End" />
+                                                        <Label Text="{Binding Color}" FontSize="14" Grid.Column="7" HorizontalOptions="Start" />
 
-                            </Grid.ColumnDefinitions>
-
-                            <Label Text="{Binding id}" Grid.Column="0"/>
-                            <Label Text="{Binding model}" Grid.Column="1" />
-                            <Label Text="{Binding size}" Grid.Column="2" />
-                            <Label Text="{Binding color}" Grid.Column="3" />
-                            <Label Text="{Binding price}" Grid.Column="4" />
-                            <Label Text="{Binding quantity}" Grid.Column="5" />
-                            <Switch IsToggled="False" Grid.Column="6" />
-                        </Grid>
+                                                        <Label Text="Price:" FontSize="14" TextColor="{StaticResource PrimaryColor}" Grid.Column="8" HorizontalOptions="End" />
+                                                        <Label Text="{Binding Price, StringFormat='{0:C}'}" FontSize="14" Grid.Column="9" HorizontalOptions="Start" />
+                                                    </Grid>
+                                                </Frame>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>

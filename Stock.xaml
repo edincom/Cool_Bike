@@ -6,14 +6,14 @@
 
 
     <HorizontalStackLayout>
-        
 
-        <VerticalStackLayout>
+
+        <VerticalStackLayout Margin="10, 0, 50, 0">
             <Label
-            Text="Rajouter des vélos"
+            Text="Add Bikes"
             FontAttributes="Bold"
             TextColor="DarkOrange"
-            Margin="100, 40, 0, 0" 
+            Margin="100, 20, 0, 0" 
             FontSize="25"
             HorizontalOptions="CenterAndExpand" />
 
@@ -27,7 +27,7 @@
                 <Picker x:Name="Model" Margin="25, 50, 0, 0" Grid.Column="1" WidthRequest="250" SelectedIndexChanged="Picker1_3_SelectedIndexChanged">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
-                            <x:String>Adventurer</x:String>
+                            <x:String>Adventure</x:String>
                             <x:String>City</x:String>
                             <x:String>Explorer</x:String>
                         </x:Array>
@@ -72,12 +72,12 @@
                 <Picker x:Name="Color" Margin="25, 50, 0, 0" Grid.Column="1" WidthRequest="250" SelectedIndexChanged="Picker1_2_SelectedIndexChanged">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
-                            <x:String>purple</x:String>
-                            <x:String>black</x:String>
-                            <x:String>bleu</x:String>
-                            <x:String>green</x:String>
-                            <x:String>yellow</x:String>
-                            <x:String>grey</x:String>
+                            <x:String>Purple</x:String>
+                            <x:String>Black</x:String>
+                            <x:String>Blue</x:String>
+                            <x:String>Green</x:String>
+                            <x:String>Yellow</x:String>
+                            <x:String>White</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
@@ -98,59 +98,160 @@
                 <Entry x:Name="QuantityEntry2" Grid.Row="2" Margin="50, 20, 50, 0" Keyboard="Numeric" Placeholder="Enter a number"/>
             </Grid>
             <HorizontalStackLayout>
-                <Button Text="Confirm" Clicked="OnGetNumberClicked" Margin="50,10,0,0" FontSize="15" HeightRequest="25" WidthRequest="90"/>
+                <Button Text="Confirm" BackgroundColor="DarkOrange" Clicked="OnGetNumberClicked" Margin="50,10,0,0" FontSize="15" HeightRequest="25" WidthRequest="90"/>
                 <Label x:Name="resultLabel2" Margin="15,25,0,0"/>
             </HorizontalStackLayout>
 
-            <Button Text="Add to cart"
-                    Clicked="Button_Clicked"
-                    Margin="0,40,0,0"/>
+            <Button Text="Confirm Order"
+                    BackgroundColor="DarkOrange"
+                    Clicked="Checkout_Clicked"
+                    Margin="0,20,0,0"/>
         </VerticalStackLayout>
 
         <VerticalStackLayout>
             <Label
-                Text="Liste des Vélos en stocks"
+                Text="Bikes manufactured and available in storage"
                 FontAttributes="Bold"
                 TextColor="DarkOrange"
-                Margin="10, 40, 0, 0"
+                Margin="10, 20, 0, 0"
                 FontSize="25"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Text="model" />
-                <Label Grid.Row="0" Grid.Column="1" Text="size" />
-                <Label Grid.Row="0" Grid.Column="2" Text="color" />
-                <ListView x:Name="myListView" Grid.Row="1" Grid.ColumnSpan="3">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding model}" Grid.Column="0" />
-                                    <Label Text="{Binding size}" Grid.Column="1" />
-                                    <Label Text="{Binding color}" Grid.Column="2" />
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+            <HorizontalStackLayout>
+                <VerticalStackLayout Margin="10, 0, 40, 0">
+                    <Label
+                        Text="Adventure"
+                        FontAttributes="Bold"
+                        TextColor="DarkOrange"
+                        Margin="10, 40, 0, 0"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="SIZE" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="COLOR" />
+                        <ListView x:Name="myListView1" Grid.Row="1" Grid.ColumnSpan="2">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding size1}" Grid.Column="0" />
+                                            <Label Text="{Binding color1}" Grid.Column="1" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+
+                </VerticalStackLayout>
+
+
+
+                <VerticalStackLayout Margin="10, 0, 40, 0">
+                    <Label
+                        Text="Explorer"
+                        FontAttributes="Bold"
+                        TextColor="DarkOrange"
+                        Margin="10, 40, 0, 0"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="SIZE" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="COLOR" />
+                        <ListView x:Name="myListView2" Grid.Row="1" Grid.ColumnSpan="2">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding size2}" Grid.Column="0" />
+                                            <Label Text="{Binding color2}" Grid.Column="1" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Margin="10, 0, 40, 0">
+                    <Label
+                        Text="City"
+                        FontAttributes="Bold"
+                        TextColor="DarkOrange"
+                        Margin="10, 40, 0, 0"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="SIZE" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="COLOR" />
+                        <ListView x:Name="myListView3" Grid.Row="1" Grid.ColumnSpan="2">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding size3}" Grid.Column="0" />
+                                            <Label Text="{Binding color3}" Grid.Column="1" />
+
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+
+                </VerticalStackLayout>
+
+
+            </HorizontalStackLayout>
 
         </VerticalStackLayout>
 

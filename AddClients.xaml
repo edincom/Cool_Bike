@@ -4,10 +4,10 @@
              x:Class="Nice_bike.AddClients"
              Title="AddClients">
     <StackLayout>
-        <Label Text="Enregistrer un client" FontSize="Large" Margin="0,20,0,0" HorizontalOptions="CenterAndExpand" />
+        <Label Text="New client" FontSize="Large" Margin="0,20,0,0" HorizontalOptions="CenterAndExpand" />
         <Entry x:Name="NomEntry" Placeholder="Nom" FontSize="Large" Margin="0,20,0,0"/>
         <Entry x:Name="AdresseEntry" Placeholder="Adresse" FontSize="Large" Margin="0,20,0,0"/>
         <Entry x:Name="TVAEntry" Placeholder="TVA" FontSize="Large" Margin="0,20,0,0"/>
-        <Button Text="Enregistrer" Margin="20,20,20,0" Clicked="EnregistrerButton_Clicked" />
+        <Button Text="Save" BackgroundColor="DarkOrange" Margin="20,20,20,0" Clicked="EnregistrerButton_Clicked" />
     </StackLayout>
 </ContentPage>

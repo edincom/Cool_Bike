@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Nice_bike.Composant"
-             Title="Stock Parts">
+             Title="Stock Parts"
+             BackgroundColor="White">
 
     <Grid>
         <!-- Define the sidebar -->
@@ -11,53 +11,78 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackLayout Grid.Column="0" BackgroundColor="DarkOrange" VerticalOptions="FillAndExpand">
-            <BoxView Color="Black" HeightRequest="10" HorizontalOptions="FillAndExpand" />
-            <Label Text="Sidebar" FontSize="Large" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5,0,0" />
-            <Label Text="Fournisseur" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5,0,0" />
-            <Picker x:Name="NameOfFornisseur" BackgroundColor="Black"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5,0,0" WidthRequest="150" Grid.Row="2">
+            <BoxView Color="white" HeightRequest="10" HorizontalOptions="FillAndExpand" />
+            <Label Text="Order" FontSize="Large" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5,0,0" />
+
+            <Label Text="component" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,40,0,0" />
+            <Picker  x:Name="NameOfComponent" BackgroundColor="White"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5,0,0" WidthRequest="150" Grid.Row="2" >
+
+
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
-                        <x:String>Fournisseur 1</x:String>
-                        <x:String>Fournisseur 2</x:String>
-                        <x:String>Fournisseur 3</x:String>
+                        <x:String>Frame</x:String>
+                        <x:String>Brakes</x:String>
+                        <x:String>Tires</x:String>
+                        <x:String>Inner Tubes</x:String>
+                        <x:String>Shock Absorber</x:String>
+                        <x:String>White Painting</x:String>
+                        <x:String>Red   Painting</x:String>
+                        <x:String>Blue  Painting</x:String>
+                        <x:String>Green Painting</x:String>
+                        <x:String>Orange Painting</x:String>
+                        <x:String>Yellow Painting</x:String>
+                        <x:String>Black Painting</x:String>
+                        <x:String>NUT 1</x:String>
+                        <x:String>NUT 2</x:String>
+                        <x:String>NUT 3</x:String>
+                        <x:String>NUT 4</x:String>
+                        <x:String>NUT 5</x:String>
+                        <x:String>NUT 6</x:String>
+                        <x:String>NUT 7</x:String>
+                        <x:String>NUT 8</x:String>
+                        <x:String>SCREW 1</x:String>
+                        <x:String>SCREW 2</x:String>
+                        <x:String>SCREW 3</x:String>
+                        <x:String>SCREW 4</x:String>
+                        <x:String>SCREW 5</x:String>
+                        <x:String>SCREW 6</x:String>
+                        <x:String>SCREW 7</x:String>
+                        <x:String>SCREW 8</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
-            <Label Text="Nom du composant" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5,0,0" />
-            <Picker  x:Name="NameOfComponent" BackgroundColor="Black"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5,0,0" WidthRequest="150" Grid.Row="2" >
+
+            <Label Text="Supplier" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,20,0,0" />
+            <Picker x:Name="NameOfSupplier" BackgroundColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5,0,0" WidthRequest="150" Grid.Row="2">
+
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
-                        <x:String>Cadre</x:String>
-                        <x:String>Peinture Blanche</x:String>
-                        <x:String>Peinture Rouge</x:String>
-                        <x:String>Peinture Bleue</x:String>
-                        <x:String>Peinture Verte</x:String>
-                        <x:String>Ecrou9</x:String>
-                        <x:String>Ecrou8</x:String>
-                        <x:String>Ecrou6</x:String>
-                        <x:String>Ecrou4</x:String>
-                        <x:String>Ecrou3</x:String>
-                        <x:String>Ecrou2</x:String>
+                        <x:String>DECATHLON</x:String>
+                        <x:String>BIKE PARTS</x:String>
+                        <x:String>FELIX CYCLES</x:String>
+                        <x:String>BENELUX</x:String>
+                        <x:String>DBK</x:String>
+                        <x:String>DELTA MOBILITY</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
-            <Label Text="Another Label" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5,0,0" />
-            <Entry x:Name="Quantity" BackgroundColor="Black" Placeholder="Enter an integer" Keyboard="Numeric" Margin="0,5,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-            <Button TextColor="Black" Text="Confirm" Clicked="Update" Margin="0,5,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-            <!--<Label x:Name="MyComp" Margin="40,10,0,0" HorizontalOptions="CenterAndExpand"/>-->
+            <Label Text="Quantity" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,20,0,0" />
+            <Entry x:Name="Quantity" BackgroundColor="White" Placeholder="Enter an integer" Keyboard="Numeric" Margin="0,5,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+            <Button TextColor="Orange" FontAttributes="Bold" BackgroundColor="White" Text="Confirm" Clicked="Update" Margin="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
         </StackLayout>
 
 
-        <!-- Define the main content -->
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Text="My Table" FontSize="Large" HorizontalOptions="Center" Margin="0,10" />
+            <Label Grid.Row="0" Text="Stock" FontSize="Large" HorizontalOptions="Center" Margin="0,10" />
             <Grid Grid.Row="1" Padding="10" BackgroundColor="LightGray">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -66,6 +91,7 @@
                 <Label Grid.Column="0" TextColor="Black" Text="ID" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                 <Label Grid.Column="1" TextColor="Black" Text="Components" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                 <Label Grid.Column="2" TextColor="Black" Text="Quantity" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                <Label Grid.Column="3" TextColor="Black" Text="Suppliers" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
             </Grid>
             <ListView  x:Name="myListView" Grid.Row="2" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
@@ -81,13 +107,19 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
 
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding idstock}" HorizontalTextAlignment="Center" />
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding components}" HorizontalTextAlignment="Center" />
-                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding quantity}" HorizontalTextAlignment="Center" />
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding idstock}"    TextColor="Black" HorizontalTextAlignment="Center" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding components}" TextColor="Black" HorizontalTextAlignment="Center" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding quantity}"   TextColor="Black" HorizontalTextAlignment="Center" />
+                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding suppliers}"  TextColor="Black" HorizontalTextAlignment="Center" />
 
-                                <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" BackgroundColor="Gray" Margin="0,5" />
+                                <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="Gray" Margin="0,5" />
+
+                                <ProgressBar x:Name="QuantityProgressBar" Grid.Row="0" Grid.Column="2" ProgressColor="Green" Progress="{Binding QuantityProgress}"
+                                   VerticalOptions="End" HeightRequest="10" Margin="0,20,0,0" />
+
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

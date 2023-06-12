@@ -60,6 +60,7 @@
                             <x:String>Purple</x:String>
                             <x:String>Black</x:String>
                             <x:String>White</x:String>
+                            <x:String>Blue</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>

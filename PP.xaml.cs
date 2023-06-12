@@ -23,7 +23,7 @@ public partial class PP : ContentPage
         conn.Open();
 
         // Créer une requête SELECT pour extraire les données de la table
-        string query = "SELECT * FROM commande";
+        string query = "SELECT * FROM biketodo";
 
         // Ouvrir un objet MySqlCommand pour exécuter la requête SELECT
         MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -89,14 +89,14 @@ public partial class PP : ContentPage
             }
             else
             {
-                DisplayAlert("Error", "Commande non sélectionné", "OK");
+                DisplayAlert("Error", "Order not selected", "OK");
             }
 
 
         }
         catch
         {
-            DisplayAlert("Error", "Commande non sélectionné", "OK");
+            DisplayAlert("Error", "Order not selected", "OK");
         }
     }
     public void myListView_UpClick(object sender, EventArgs e)
@@ -117,12 +117,12 @@ public partial class PP : ContentPage
             }
             else if (oldIndex != 0)
             {
-                DisplayAlert("Error", "Commande non sélectionné", "OK");
+                DisplayAlert("Error", "Order not selected", "OK");
             }
         }
         catch
         {
-            DisplayAlert("Error", "Commande non sélectionné", "OK");
+            DisplayAlert("Error", "Order not selected", "OK");
         }
 
 
@@ -146,14 +146,14 @@ public partial class PP : ContentPage
             }
             else if (oldIndex != dataList.Count - 1)
             {
-                DisplayAlert("Error", "Commande non sélectionné", "OK");
+                DisplayAlert("Error", "Order not selected", "OK");
             }
 
 
         }
         catch
         {
-            DisplayAlert("Error", "Commande non sélectionné", "OK");
+            DisplayAlert("Error", "Order not selected", "OK");
         }
     }
 
@@ -166,14 +166,14 @@ public partial class PP : ContentPage
         conn.Open();
 
         // vider la table d'abord
-        string query = "DELETE FROM commande";
+        string query = "DELETE FROM biketodo";
         MySqlCommand command = new MySqlCommand(query, conn);
         command.ExecuteNonQuery();
 
         // Enregistrerla nouvelle table
         foreach (MyTableData rowData in dataList)
         {
-            query = "INSERT INTO commande (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
+            query = "INSERT INTO biketodo (model, size, color, price, quantity) VALUES (@model, @size, @color, @price, @quantity)";
             command = new MySqlCommand(query, conn);
             command.Parameters.AddWithValue("@model", rowData.model);
             command.Parameters.AddWithValue("@size", rowData.size);

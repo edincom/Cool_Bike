@@ -7,30 +7,32 @@ namespace Nice_bike;
 public partial class Composant : ContentPage
 {
     List<MyTableData> dataList = new List<MyTableData>();
+
     public Composant()
 
     {
         InitializeComponent();
-        // Cr�er une connexion � la base de donn�es MySQL
+
+
+        // Cr er une connexion   la base de donn es MySQL
         MySqlConnection conn = new MySqlConnection("server=pat.infolab.ecam.be;port=63324;database=bike2;uid=user2;password=12345;");
 
-        // Ouvrir la connexion � la base de donn�es
+        // Ouvrir la connexion la base de données
         conn.Open();
 
-        // Cr�er une requ�te SELECT pour extraire les donn�es de la table
+        // Cr er une requ te SELECT pour extraire les donn es de la table
         string query = "SELECT * FROM stock";
 
-        // Cr�er un objet MySqlCommand pour ex�cuter la requ�te SELECT
+        // Cr er un objet MySqlCommand pour ex cuter la requ te SELECT
         MySqlCommand cmd = new MySqlCommand(query, conn);
 
-        // Ex�cuter la requ�te SELECT et r�cup�rer les r�sultats
+        // Ex cuter la requ te SELECT et r cup rer les r sultats
         MySqlDataReader reader = cmd.ExecuteReader();
 
-        // Cr�er une liste d'objets pour stocker les donn�es de la table
 
+        // Cr er une liste d'objets pour stocker les donn es de la table
 
-
-        // Parcourir les r�sultats de la requ�te SELECT et stocker les donn�es dans la liste
+        // Parcourir les r sultats de la requ te SELECT et stocker les donn es dans la liste
         while (reader.Read())
         {
             MyTableData rowData = new MyTableData()
@@ -38,28 +40,45 @@ public partial class Composant : ContentPage
                 idstock = reader.GetString(0),
                 components = reader.GetString(1),
                 quantity = reader.GetString(2),
+                suppliers = reader.GetString(3),
             };
             dataList.Add(rowData);
         }
 
-        // Fermer le lecteur et la connexion � la base de donn�es
+        // Fermer le lecteur et la connexion à la base de données
         reader.Close();
         conn.Close();
 
-        // Afficher les donn�es dans une liste dans l'interface utilisateur
+        // Afficher les donn es dans une liste dans l'interface utilisateur
         myListView.ItemsSource = dataList;
+
+
+        foreach (var data in dataList)
+        {
+            int quantityValue = int.Parse(data.quantity);
+            if (quantityValue < 50)
+            {
+                data.QuantityProgress = (double)quantityValue / 50.0; // Calcul de la progression en pourcentage
+            }
+            else
+            {
+                data.QuantityProgress = 1.0; // Si la quantité est supérieure ou égale à 50, la progression est de 100%
+            }
+        }
+
 
     }
     public async void Update(object sender, EventArgs e)
     {
-        // R�cup�rer les donn�es de la ligne s�lectionn�e dans la liste
+        // R cup rer les donn es de la ligne s lectionn e dans la liste
         var component = new MyTableData
         {
             components = NameOfComponent.SelectedItem.ToString(),
+            suppliers = NameOfSupplier.SelectedItem.ToString(),
             quantity = Quantity.Text
         };
 
-        // Cr�er une connexion � la base de donn�es MySQL
+        // Cr er une connexion   la base de donn es MySQL
         MySqlConnection conn = new MySqlConnection("server=pat.infolab.ecam.be;port=63324;database=bike2;uid=user2;password=12345;");
 
         MyTableData component_found = dataList.FirstOrDefault(c => c.components == component.components);
@@ -68,18 +87,19 @@ public partial class Composant : ContentPage
 
             await conn.OpenAsync();
 
-            // Cr�er une requ�te UPDATE pour mettre � jour les donn�es dans la table
-            string query = "INSERT INTO stock (components,quantity) VALUES (@name, @Quantity)";
+            // Cr er une requ te UPDATE pour mettre   jour les donn es dans la table
+            string query = "INSERT INTO stock (components,quantity,suppliers) VALUES (@name, @Quantity,@sup)";
 
-            // Cr�er un objet MySqlCommand pour ex�cuter la requ�te UPDATE
+            // Cr er un objet MySqlCommand pour ex cuter la requ te UPDATE
             MySqlCommand cmd = new MySqlCommand(query, conn);
 
-            // Ajouter les param�tres de la requ�te UPDATE
+            // Ajouter les param tres de la requ te UPDATE
             cmd.Parameters.AddWithValue("@quantity", component.quantity);
             cmd.Parameters.AddWithValue("@name", component.components);
+            cmd.Parameters.AddWithValue("@sup", component.suppliers);
 
 
-            // Ex�cuter la requ�te UPDATE
+            // Ex cuter la requ te UPDATE
             await cmd.ExecuteNonQueryAsync();
 
             // Afficher un message de confirmation
@@ -100,6 +120,7 @@ public partial class Composant : ContentPage
                     idstock = selectReader.GetString(0),
                     components = selectReader.GetString(1),
                     quantity = selectReader.GetString(2),
+                    suppliers = selectReader.GetString(3),
                 };
                 dataList.Add(rowData);
             }
@@ -119,28 +140,31 @@ public partial class Composant : ContentPage
         int quantity1 = int.Parse(component_found.quantity) + int.Parse(component.quantity);
         component_found.quantity = quantity1.ToString();
 
+
         try
         {
-            // Ouvrir la connexion � la base de donn�es
+            // Ouvrir la connexion   la base de donn es
             await conn.OpenAsync();
 
-            // Cr�er une requ�te UPDATE pour mettre � jour les donn�es dans la table
-            string query = "UPDATE stock SET quantity = @quantity WHERE components = @components";
+            // Cr er une requ te UPDATE pour mettre   jour les donn es dans la table
+            string query = "UPDATE stock SET quantity = @quantity, suppliers = @sup WHERE components = @components";
 
-            // Cr�er un objet MySqlCommand pour ex�cuter la requ�te UPDATE
+
+            // Cr er un objet MySqlCommand pour ex cuter la requ te UPDATE
             MySqlCommand cmd = new MySqlCommand(query, conn);
 
-            // Ajouter les param�tres de la requ�te UPDATE
+            // Ajouter les param tres de la requ te UPDATE
             cmd.Parameters.AddWithValue("@quantity", component_found.quantity);
             cmd.Parameters.AddWithValue("@components", component.components);
+            cmd.Parameters.AddWithValue("@sup", component.suppliers);
 
 
-            // Ex�cuter la requ�te UPDATE
+            // Ex cuter la requ te UPDATE
             await cmd.ExecuteNonQueryAsync();
 
             // Afficher un message de confirmation
             await DisplayAlert("Success", "Data updated successfully.", "OK");
-            // Ex�cute la requ�te UPDATE
+            // Ex cute la requ te UPDATE
             await cmd.ExecuteNonQueryAsync();
 
             // Afficher un message de confirmation
@@ -162,6 +186,7 @@ public partial class Composant : ContentPage
                     idstock = selectReader.GetString(0),
                     components = selectReader.GetString(1),
                     quantity = selectReader.GetString(2),
+                    suppliers = selectReader.GetString(3),
                 };
                 dataList.Add(rowData);
             }
@@ -183,15 +208,22 @@ public partial class Composant : ContentPage
         }
         finally
         {
-            // Fermer la connexion � la base de donn�es
+            // Fermer la connexion   la base de donn es
             conn.Close();
         }
 
     }
     private class MyTableData
     {
+
+
         public string idstock { get; set; }
         public string components { get; set; }
         public string quantity { get; set; }
+        public string suppliers { get; set; }
+
+        public double QuantityProgress { get; set; }
     }
+
+
 }

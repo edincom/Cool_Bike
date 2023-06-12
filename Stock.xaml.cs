@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 
+
 namespace Nice_bike;
 
 public partial class Stock : ContentPage
@@ -18,7 +19,7 @@ public partial class Stock : ContentPage
 
 
         // Créer une requête SELECT pour extraire les données de la table
-        string query = "SELECT * FROM commande";
+        string query = "SELECT * FROM bikedone";
 
 
         // Ouvrir un objet MySqlCommand pour exécuter la requête SELECT
@@ -29,45 +30,144 @@ public partial class Stock : ContentPage
 
         // Créer une liste d'objets pour stocker les données de la table
 
-        List<MyTableData> dataList = new List<MyTableData>();
+        List<MyTableData> dataList1 = new List<MyTableData>();
+        List<MyTableData> dataList2 = new List<MyTableData>();
+        List<MyTableData> dataList3 = new List<MyTableData>();
 
         // Parcourir les résultats de la requête SELECT et stocker les données dans la liste
         while (reader.Read())
         {
-            string cust = reader.IsDBNull(7) ? null : reader.GetString(7);
+            string cust = reader.IsDBNull(4) ? null : reader.GetString(4);
+            string model = reader.IsDBNull(0) ? null : reader.GetString(0);
 
-            if (cust == "Nice_Bike")
+            if (cust == "Nice_Bike" & model == "Adventure")
             {
-                MyTableData rowData = new MyTableData()
+                MyTableData rowData1 = new MyTableData()
                 {
-                    model = reader.IsDBNull(1) ? null : reader.GetString(1),
-                    size = reader.IsDBNull(2) ? null : reader.GetString(2),
-                    color = reader.IsDBNull(3) ? null : reader.GetString(3),
-                    customer = reader.IsDBNull(7) ? null : reader.GetString(7),
+                    size1 = reader.IsDBNull(1) ? null : reader.GetString(1),
+                    color1 = reader.IsDBNull(2) ? null : reader.GetString(2),
+                };
+                dataList1.Add(rowData1);
+
+            }
+            else if (cust == "Nice_Bike" & model == "Explorer")
+            {
+                MyTableData rowData2 = new MyTableData()
+                {
+                    size2 = reader.IsDBNull(1) ? null : reader.GetString(1),
+                    color2 = reader.IsDBNull(2) ? null : reader.GetString(2),
                 };
 
-            dataList.Add(rowData);
+
+                dataList2.Add(rowData2);
+
+            }
+            else if (cust == "Nice_Bike" & model == "City")
+            {
+                MyTableData rowData3 = new MyTableData()
+                {
+                    size3 = reader.IsDBNull(1) ? null : reader.GetString(1),
+                    color3 = reader.IsDBNull(2) ? null : reader.GetString(2),
+                };
+                dataList3.Add(rowData3);
+
+            }
 
 
         }
-    }
         // Fermer le lecteur et la connexion à la base de données
         reader.Close();
         conn.Close();
 
         // Afficher les données dans une liste dans l'interface utilisateur
-        myListView.ItemsSource = dataList;
+        myListView1.ItemsSource = dataList1;
+        myListView2.ItemsSource = dataList2;
+        myListView3.ItemsSource = dataList3;
 
     }
 
     public class MyTableData
     {
-        public string model { get; set; }
-        public string size { get; set; }
-        public string color { get; set; }
-        public string customer { get; set; }
+        public string size1 { get; set; }
+        public string color1 { get; set; }
+
+        public string size2 { get; set; }
+        public string color2 { get; set; }
+
+        public string size3 { get; set; }
+        public string color3 { get; set; }
+
+        public string Size { get; set; }
+        public string Color { get; set; }
+
+        public string Model { get; set; }
+
+        public int? Quantity { get; set; }
+
+        public MyTableData()
+        {
+            Quantity = null;
+        }
 
 
+    }
+
+
+    private async void Checkout_Clicked(object sender, EventArgs e)
+    {
+        // Afficher une confirmation pour confirmer la commande
+        bool answer = await DisplayAlert("Confirmation", "Do you want to confirm th order ?", "Yes", "No");
+
+        if (answer)
+        {
+
+            SendCartToDatabase();
+
+            // Afficher un message de confirmation
+            await DisplayAlert("Succes", "The order has been successfully registered!", "OK");
+
+
+            // Naviguer vers la page d'accueil
+            await Navigation.PopToRootAsync();
+        }
+    }
+
+    private int GenerateOrderNumber()
+    {
+        Random rnd = new Random();
+        return rnd.Next(100000, 999999);
+    }
+    private void SendCartToDatabase()
+    {
+        string connectionString = "server=pat.infolab.ecam.be;port=63324;database=bike2;uid=user2;password=12345;";
+        try
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                int quantity = int.Parse(resultLabel2.Text);
+                int NumOrder = GenerateOrderNumber();
+                int idbike = GenerateOrderNumber();
+                for (int i = 0; i < quantity; i++)
+                {
+                    string query = "INSERT INTO biketodo (Model, Size, Color, Price, customer, NumOrder, idbike) VALUES (@model, @size, @color, @price, @customer, @NumOrder, @idbike)";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@model", MyModel.Text);
+                    command.Parameters.AddWithValue("@size", MySize.Text);
+                    command.Parameters.AddWithValue("@color", MyColor.Text);
+                    command.Parameters.AddWithValue("@price", "200");
+                    command.Parameters.AddWithValue("@customer", "Nice_Bike");
+                    command.Parameters.AddWithValue("@NumOrder", NumOrder);
+                    command.Parameters.AddWithValue("@idbike", idbike);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 
 

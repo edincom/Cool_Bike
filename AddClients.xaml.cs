@@ -38,12 +38,12 @@ public partial class AddClients : ContentPage
             Client client = new Client { Nom = nom, Adresse = adresse, TVA = tva };
             ClientManager.AjouterClient(client);
 
-            await DisplayAlert("Succès", "Le client a été enregistré", "OK");
+            await DisplayAlert("Succes", "the client has been sucessfully registered", "OK");
             await Navigation.PopAsync();
         }
         else
         {
-            await DisplayAlert("Erreur", "Le nom du client est obligatoire", "OK");
+            await DisplayAlert("Error", "the name of the client is mandatory", "OK");
         }
     }
 }

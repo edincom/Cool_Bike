@@ -15,7 +15,7 @@
             </Grid.ColumnDefinitions>
             <Picker x:Name="ClientsPicker" ItemDisplayBinding="{Binding Nom}" Grid.Row="0" Grid.Column="0" HeightRequest="50" WidthRequest="800"/>
 
-            <Button Text="Enregistrer un client" BackgroundColor="DarkOrange" Clicked="EnregistrerButton_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="50"/>
+            <Button Text="New Client" BackgroundColor="DarkOrange" Clicked="EnregistrerButton_Clicked" Grid.Row="0" Grid.Column="1" HeightRequest="50"/>
         </Grid>
 
         <Label Text="List of Bikes" FontAttributes="Bold" FontSize="Large" Margin="10,10,10,0" />
@@ -102,6 +102,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Label x:Name="deliveryDateLabel" Text="Estimated Delivery Date" FontSize="Medium" Margin="10,0,0,0" HorizontalOptions="Start"/>
 
         <Label Text="{Binding Total, StringFormat='€{0:N2}'}" FontSize="Medium" Margin="10" />
 
